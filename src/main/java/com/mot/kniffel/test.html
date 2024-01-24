@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="execButton">Execute Request</button>
+
+<script>
+    document.getElementById('execButton').addEventListener('click', async () => {
+        try {
+            const response = await fetch("http://localhost:8080/api/v1/game/", {
+                method: "POST",
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({
+                    key: "123456" // static key
+                })
+            });
+            alert(`Request successful! Return code = ${response.status}. See dev console for more.`);
+        } catch (error) {
+            console.error('Fetch error:', error);
+            alert('Error occurred! See dev console for more.')
+        }
+    })
+</script>
+
+</body>
+</html>
